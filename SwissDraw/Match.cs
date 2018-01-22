@@ -133,6 +133,7 @@ namespace SwissDraw
         public static int getVersusKey1(int minKey, int[][] splittedKeys, Match[] matches,
             Dictionary<int, Person> persons, Match[] results)
         {
+
             int i = 0;
             bool flag = true;
             while (flag == true)
@@ -149,20 +150,19 @@ namespace SwissDraw
 
             foreach (int key in splittedKeys[i])
             {
-                if (i != minKey)
+                if (key != minKey)
                 {
-                    if (containsKey(matches, i) == false)
+                    if (containsKey(matches, key) == false)
                     {
-                        if (isMatched(results, i, minKey) == false)
+                        if (isMatched(results, key, minKey) == false)
                         {
-                            if (isSameGroup(persons, i, minKey) == false)
+                            if (isSameGroup(persons, key, minKey) == false)
                             {
                                 return key;
                             }
                         }
                     }
                 }
-                i++;
             }
             return -1;
         }
