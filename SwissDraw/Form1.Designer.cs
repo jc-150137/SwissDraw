@@ -71,6 +71,7 @@
             this.Controls.Add(this.AddPerson);
             this.Name = "Form1";
             this.Text = "対戦表表示システム";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 
         }
