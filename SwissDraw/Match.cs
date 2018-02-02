@@ -70,6 +70,10 @@ namespace SwissDraw
                         if (versusKey < 0)
                         {
                             versusKey = getVersusKey4(minKey, SplittedKeys, matches, persons, results);
+                            if (versusKey < 0)
+                            {
+                                return null;
+                            }
                         }
                     }
                 }
@@ -193,6 +197,10 @@ namespace SwissDraw
                     }
                 }
                 i++;
+                if (splittedKeys.Length <= i)
+                {
+                    return -1;
+                }
             }
             return -1;
         }
@@ -267,6 +275,10 @@ namespace SwissDraw
                     }
                 }
                 i++;
+                if (splittedKeys.Length <= i)
+                {
+                    return -1;
+                }
             }
             return -1;
         }

@@ -39,7 +39,7 @@ namespace SwissDraw.Tests
 
             matches1[0].Result = 1;//1-4
             matches1[1].Result = 1;//2-5
-            matches1[2].Result = 1;//3-5
+            matches1[2].Result = 1;//3-6
 
             var result1 = Match.MergeMatch(matches1, new Match[0]);
             Assert.AreEqual(3, result1.Length);
@@ -53,12 +53,22 @@ namespace SwissDraw.Tests
             Assert.AreEqual(5, matches2[2].Person1);
             Assert.AreEqual(6, matches2[2].Person2);
             
-            matches2[0].Result = 1;
-            matches2[1].Result = 1;
-            matches2[2].Result = 1;
+            matches2[0].Result = 1;//1-2
+            matches2[1].Result = 1;//3-4
+            matches2[2].Result = 1;//5-6
 
             var result2 = Match.MergeMatch(matches2, result1);
             Assert.AreEqual(6, result2.Length);
+
+            Match[] matches3 = Match.MakeMatch(persons, result2);
+            Assert.AreEqual(3, matches3.Length);
+            Assert.AreEqual(1, matches3[0].Person1);
+            Assert.AreEqual(3, matches3[0].Person2);
+            Assert.AreEqual(2, matches3[1].Person1);
+            Assert.AreEqual(5, matches3[1].Person2);
+            Assert.AreEqual(4, matches3[2].Person1);
+            Assert.AreEqual(6, matches3[2].Person2);
+
         }
 
         [TestMethod()]
@@ -76,9 +86,7 @@ namespace SwissDraw.Tests
 
             var result2 = Match.MergeMatch(matches1, matches2);
             Assert.AreEqual(3, result2.Length);
-
-
-
+            
         }
 
 
