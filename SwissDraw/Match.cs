@@ -98,6 +98,7 @@ namespace SwissDraw
                     maxWinCount = wCount;
                 }
             }
+
             int[][] result = new int[maxWinCount + 1][];
             for (int i = 0; i <= maxWinCount; i++)
             {
