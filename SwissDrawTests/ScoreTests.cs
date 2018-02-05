@@ -10,7 +10,7 @@ namespace SwissDraw.Tests
 {
     [TestClass()]
     public class ScoreTests
-    {/*
+    {
         [TestMethod()]
         public void CalcWinClontTest()
         {
@@ -54,7 +54,7 @@ namespace SwissDraw.Tests
 
 
         }
-
+        
         [TestMethod()]
         public void CalcScoreTest()
         {
@@ -80,14 +80,14 @@ namespace SwissDraw.Tests
             Assert.AreEqual(0, score2[5].winCount);
             Assert.AreEqual(0, score2[6].winCount);
 
-            Assert.AreEqual(1 + 1, score2[1].score);    //3,2
-            Assert.AreEqual(0, score2[1].score);        //5
-            Assert.AreEqual(0, score2[1].score);        //6
-            Assert.AreEqual(0 + 0, score2[1].score);    //5,6
-            Assert.AreEqual(0, score2[1].score);
-            Assert.AreEqual(0, score2[1].score);
+            Assert.AreEqual(2, score2[1].score);    //3,2
+            Assert.AreEqual(0, score2[2].score);        //5
+            Assert.AreEqual(0, score2[3].score);        //6
+            Assert.AreEqual(0, score2[4].score);    //5,6
+            Assert.AreEqual(0, score2[5].score);
+            Assert.AreEqual(0, score2[6].score);
 
 
-        }*/
+        }//*/
     }
 }
