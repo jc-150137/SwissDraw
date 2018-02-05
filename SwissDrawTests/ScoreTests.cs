@@ -58,32 +58,40 @@ namespace SwissDraw.Tests
         [TestMethod()]
         public void CalcScoreTest()
         {
-            Match[] result2 = new Match[6];
+            Match[] result2 = new Match[9];
             result2[0] = new Match(1, 3);
             result2[0].Result = 1;
-            result2[1] = new Match(2, 5);
+            result2[1] = new Match(2, 4);
             result2[1].Result = 1;
-            result2[2] = new Match(4, 6);
+            result2[2] = new Match(5, 6);
             result2[2].Result = 1;
-            result2[3] = new Match(1, 2);
+
+            result2[3] = new Match(1, 5);
             result2[3].Result = 1;
-            result2[4] = new Match(4, 5);
+            result2[4] = new Match(2, 3);
             result2[4].Result = 1;
-            result2[5] = new Match(3, 6);
+            result2[5] = new Match(4, 6);
             result2[5].Result = 1;
 
+            result2[6] = new Match(1, 2);
+            result2[6].Result = 1;
+            result2[7] = new Match(4, 5);
+            result2[7].Result = 1;
+            result2[8] = new Match(3, 6);
+            result2[8].Result = 1;
+
             var score2 = Score.CalcScore(result2);
-            Assert.AreEqual(2, score2[1].winCount);
-            Assert.AreEqual(1, score2[2].winCount);
+            Assert.AreEqual(3, score2[1].winCount);
+            Assert.AreEqual(2, score2[2].winCount);
             Assert.AreEqual(1, score2[3].winCount);
             Assert.AreEqual(2, score2[4].winCount);
-            Assert.AreEqual(0, score2[5].winCount);
+            Assert.AreEqual(1, score2[5].winCount);
             Assert.AreEqual(0, score2[6].winCount);
 
-            Assert.AreEqual(2, score2[1].score);    //3,2
-            Assert.AreEqual(0, score2[2].score);        //5
+            Assert.AreEqual(4, score2[1].score);    //3,2
+            Assert.AreEqual(3, score2[2].score);        //5
             Assert.AreEqual(0, score2[3].score);        //6
-            Assert.AreEqual(0, score2[4].score);    //5,6
+            Assert.AreEqual(1, score2[4].score);    //5,6
             Assert.AreEqual(0, score2[5].score);
             Assert.AreEqual(0, score2[6].score);
 
