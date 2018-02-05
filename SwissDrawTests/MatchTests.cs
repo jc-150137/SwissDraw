@@ -28,6 +28,7 @@ namespace SwissDraw.Tests
             persons.Add(5, new Person { LotNumber = 5, PersonGroup = "C", PersonName = "尾堂" });
             persons.Add(6, new Person { LotNumber = 6, PersonGroup = "C", PersonName = "加藤" });
 
+            //1回戦目
             Match[] matches1 = Match.MakeMatch(persons, new Match[0]);
             Assert.AreEqual(3, matches1.Length);
             Assert.AreEqual(1, matches1[0].Person1);
@@ -37,13 +38,14 @@ namespace SwissDraw.Tests
             Assert.AreEqual(5, matches1[2].Person1);
             Assert.AreEqual(6, matches1[2].Person2);
 
-            matches1[0].Result = 1;//1-3
-            matches1[1].Result = 1;//2-4
-            matches1[2].Result = 1;//5-6
+            matches1[0].Result = 1;
+            matches1[1].Result = 1;
+            matches1[2].Result = 1;
 
             var result1 = Match.MergeMatch(matches1, new Match[0]);
             Assert.AreEqual(3, result1.Length);
-            
+
+            //2回戦目
             Match[] matches2 = Match.MakeMatch(persons, result1);
             Assert.AreEqual(3, matches2.Length);
             Assert.AreEqual(1, matches2[0].Person1);
@@ -53,13 +55,14 @@ namespace SwissDraw.Tests
             Assert.AreEqual(4, matches2[2].Person1);
             Assert.AreEqual(6, matches2[2].Person2);
             
-            matches2[0].Result = 1;//1-5
-            matches2[1].Result = 1;//2-3
-            matches2[2].Result = 1;//4-6
+            matches2[0].Result = 1;
+            matches2[1].Result = 1;
+            matches2[2].Result = 1;
 
             var result2 = Match.MergeMatch(matches2, result1);
             Assert.AreEqual(6, result2.Length);
-            
+
+            //3回戦目
             Match[] matches3 = Match.MakeMatch(persons, result2);
             Assert.AreEqual(3, matches3.Length);
             Assert.AreEqual(1, matches3[0].Person1);
@@ -68,7 +71,13 @@ namespace SwissDraw.Tests
             Assert.AreEqual(5, matches3[1].Person2);
             Assert.AreEqual(3, matches3[2].Person1);
             Assert.AreEqual(6, matches3[2].Person2);
-            //*/
+
+            matches3[0].Result = 1;
+            matches3[1].Result = 1;
+            matches3[2].Result = 1;
+
+            var result3 = Match.MergeMatch(matches3, result2);
+            Assert.AreEqual(9, result3.Length);
         }
 
         [TestMethod()]
@@ -82,20 +91,21 @@ namespace SwissDraw.Tests
             persons.Add(5, new Person { LotNumber = 5, PersonGroup = "E", PersonName = "尾堂" });
             persons.Add(6, new Person { LotNumber = 6, PersonGroup = "F", PersonName = "鎌田" });
             persons.Add(7, new Person { LotNumber = 7, PersonGroup = "G", PersonName = "木下" });
-            persons.Add(8, new Person { LotNumber = 8, PersonGroup = "H", PersonName = "クスノキ博士" });
+            persons.Add(8, new Person { LotNumber = 8, PersonGroup = "H", PersonName = "楠木" });
             persons.Add(9, new Person { LotNumber = 9, PersonGroup = "I", PersonName = "煙山" });
-            persons.Add(10, new Person { LotNumber = 10, PersonGroup = "J", PersonName = "小泉総理" });
-            persons.Add(11, new Person { LotNumber = 11, PersonGroup = "K", PersonName = "佐々木" });
-            persons.Add(12, new Person { LotNumber = 12, PersonGroup = "L", PersonName = "嶋" });
+            persons.Add(10, new Person { LotNumber = 10, PersonGroup = "J", PersonName = "小泉" });
+            persons.Add(11, new Person { LotNumber = 11, PersonGroup = "K", PersonName = "佐崎" });
+            persons.Add(12, new Person { LotNumber = 12, PersonGroup = "L", PersonName = "島田" });
             persons.Add(13, new Person { LotNumber = 13, PersonGroup = "M", PersonName = "鈴木" });
             persons.Add(14, new Person { LotNumber = 14, PersonGroup = "N", PersonName = "清石" });
             persons.Add(15, new Person { LotNumber = 15, PersonGroup = "O", PersonName = "曽我" });
             persons.Add(16, new Person { LotNumber = 16, PersonGroup = "P", PersonName = "滝沢" });
-            persons.Add(17, new Person { LotNumber = 17, PersonGroup = "Q", PersonName = "千代田" });
+            persons.Add(17, new Person { LotNumber = 17, PersonGroup = "Q", PersonName = "千代" });
             persons.Add(18, new Person { LotNumber = 18, PersonGroup = "R", PersonName = "榴岡" });
             persons.Add(19, new Person { LotNumber = 19, PersonGroup = "S", PersonName = "寺田" });
             persons.Add(20, new Person { LotNumber = 20, PersonGroup = "T", PersonName = "富沢" });
 
+            //1回戦目
             Match[] matches1 = Match.MakeMatch(persons, new Match[0]);
             Assert.AreEqual(10, matches1.Length);
             Assert.AreEqual(1, matches1[0].Person1);
@@ -133,6 +143,7 @@ namespace SwissDraw.Tests
             var result1 = Match.MergeMatch(matches1, new Match[0]);
             Assert.AreEqual(10, result1.Length);
 
+            //2回戦目
             Match[] matches2 = Match.MakeMatch(persons, result1);
             Assert.AreEqual(10, matches2.Length);
             Assert.AreEqual(1, matches2[0].Person1);
@@ -170,6 +181,7 @@ namespace SwissDraw.Tests
             var result2 = Match.MergeMatch(matches2, result1);
             Assert.AreEqual(20, result2.Length);
 
+            //3回戦目
             Match[] matches3 = Match.MakeMatch(persons, result2);
             Assert.AreEqual(10, matches3.Length);
             Assert.AreEqual(1, matches3[0].Person1);
@@ -206,7 +218,7 @@ namespace SwissDraw.Tests
 
             var result3 = Match.MergeMatch(matches3, result2);
             Assert.AreEqual(30, result3.Length);
-            //*/
+
         }
 
         [TestMethod()]
