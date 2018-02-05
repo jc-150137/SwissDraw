@@ -23,23 +23,23 @@ namespace SwissDraw.Tests
             Dictionary<int, Person> persons = new Dictionary<int, Person>();
             persons.Add(1, new Person { LotNumber = 1, PersonGroup = "A", PersonName = "安藤" });
             persons.Add(2, new Person { LotNumber = 2, PersonGroup = "A", PersonName = "伊藤" });
-            persons.Add(3, new Person { LotNumber = 3, PersonGroup = "A", PersonName = "有働" });
+            persons.Add(3, new Person { LotNumber = 3, PersonGroup = "B", PersonName = "有働" });
             persons.Add(4, new Person { LotNumber = 4, PersonGroup = "B", PersonName = "遠藤" });
-            persons.Add(5, new Person { LotNumber = 5, PersonGroup = "B", PersonName = "尾堂" });
+            persons.Add(5, new Person { LotNumber = 5, PersonGroup = "C", PersonName = "尾堂" });
             persons.Add(6, new Person { LotNumber = 6, PersonGroup = "C", PersonName = "加藤" });
 
             Match[] matches1 = Match.MakeMatch(persons, new Match[0]);
             Assert.AreEqual(3, matches1.Length);
             Assert.AreEqual(1, matches1[0].Person1);
-            Assert.AreEqual(4, matches1[0].Person2);
+            Assert.AreEqual(3, matches1[0].Person2);
             Assert.AreEqual(2, matches1[1].Person1);
-            Assert.AreEqual(5, matches1[1].Person2);
-            Assert.AreEqual(3, matches1[2].Person1);
+            Assert.AreEqual(4, matches1[1].Person2);
+            Assert.AreEqual(5, matches1[2].Person1);
             Assert.AreEqual(6, matches1[2].Person2);
 
-            matches1[0].Result = 1;//1-4
-            matches1[1].Result = 1;//2-5
-            matches1[2].Result = 1;//3-6
+            matches1[0].Result = 1;//1-3
+            matches1[1].Result = 1;//2-4
+            matches1[2].Result = 1;//5-6
 
             var result1 = Match.MergeMatch(matches1, new Match[0]);
             Assert.AreEqual(3, result1.Length);
@@ -47,28 +47,28 @@ namespace SwissDraw.Tests
             Match[] matches2 = Match.MakeMatch(persons, result1);
             Assert.AreEqual(3, matches2.Length);
             Assert.AreEqual(1, matches2[0].Person1);
-            Assert.AreEqual(2, matches2[0].Person2);
-            Assert.AreEqual(3, matches2[1].Person1);
-            Assert.AreEqual(4, matches2[1].Person2);
-            Assert.AreEqual(5, matches2[2].Person1);
+            Assert.AreEqual(5, matches2[0].Person2);
+            Assert.AreEqual(2, matches2[1].Person1);
+            Assert.AreEqual(3, matches2[1].Person2);
+            Assert.AreEqual(4, matches2[2].Person1);
             Assert.AreEqual(6, matches2[2].Person2);
             
-            matches2[0].Result = 1;//1-2
-            matches2[1].Result = 1;//3-4
-            matches2[2].Result = 1;//5-6
+            matches2[0].Result = 1;//1-5
+            matches2[1].Result = 1;//2-3
+            matches2[2].Result = 1;//4-6
 
             var result2 = Match.MergeMatch(matches2, result1);
             Assert.AreEqual(6, result2.Length);
-
+            
             Match[] matches3 = Match.MakeMatch(persons, result2);
             Assert.AreEqual(3, matches3.Length);
             Assert.AreEqual(1, matches3[0].Person1);
-            Assert.AreEqual(3, matches3[0].Person2);
-            Assert.AreEqual(2, matches3[1].Person1);
+            Assert.AreEqual(2, matches3[0].Person2);
+            Assert.AreEqual(4, matches3[1].Person1);
             Assert.AreEqual(5, matches3[1].Person2);
-            Assert.AreEqual(4, matches3[2].Person1);
+            Assert.AreEqual(3, matches3[2].Person1);
             Assert.AreEqual(6, matches3[2].Person2);
-
+            //*/
         }
 
         [TestMethod()]
