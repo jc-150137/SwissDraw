@@ -27,15 +27,15 @@ namespace SwissDraw
             foreach(Match re in result)
             {
                 int[] keys = GetKeyArray(calcs);
-                //どっちが勝ったか調べる
+                // どっちが勝ったか調べる
                 int winkey, losekey;
-                if_wins(out winkey, out losekey, re);
+                checkwins(out winkey, out losekey, re);
                 if(winkey == 1000 || losekey == 1000)
                 {
                     break;
                 }
 
-                //勝った人の勝ち数を+1する。
+                // 勝った人の勝ち数を+1する。
                 if (calcs.Count <= 0)
                 {
                     calcs.Add(winkey, new Score(winkey, 1));
@@ -43,11 +43,11 @@ namespace SwissDraw
                 }
                 else
                 {
-                    if(containsKey(keys, winkey))// すでに対戦していた場合
+                    if(containsKey(keys, winkey))   // すでに対戦していた場合
                     {
                         calcs[winkey].winCount++;
                     }
-                    else// まだ対戦していない場合
+                    else                            // まだ対戦していない場合
                     {
                         calcs.Add(winkey, new Score(winkey, 1));
                         calcs.Add(losekey, new Score(losekey, 0));
@@ -57,8 +57,8 @@ namespace SwissDraw
             return calcs;
         }
 
-        //どっちが勝ったか求め、勝った人と負けた人のNumberを返す
-        public static void if_wins(out int win, out int lose, Match re)
+        // どっちが勝ったか求め、勝った人と負けた人のNumberを返す
+        public static void checkwins(out int win, out int lose, Match re)
         {
             if (re.Result == 1)
             {
@@ -106,15 +106,15 @@ namespace SwissDraw
                 foreach(Match re in result)
                 {
                     int wins = 0;
-                    if (re.Person1 == key && re.Result == 1)
+                    if (re.Person1 == key && re.Result == 1)    // Person1で勝った場合
                     {
                         wins = calcs[re.Person2].winCount;
                     }
-                    if (re.Person2 == key && re.Result == 2)
+                    if (re.Person2 == key && re.Result == 2)    // Person2で勝った場合
                     {
                         wins = calcs[re.Person1].winCount;
                     }
-                    calcs[key].score = calcs[key].score + wins;
+                    calcs[key].score = calcs[key].score + wins; // scoreに勝ち数を加算
                 }
             }
             return calcs;
